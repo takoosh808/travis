@@ -3,7 +3,7 @@ const grid=document.querySelector('#projects');
 const escapeHTML=value=>value.replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 projects.forEach((p,i)=>{
  const card=document.createElement('article');card.className='project';card.dataset.category=p.filter;
- card.innerHTML=`<button class="art ${p.id}" data-project="${p.id}" aria-label="Explore ${escapeHTML(p.title)}"><div class="art-top"><span>${escapeHTML(p.category)}</span><span>↗</span></div><div class="art-grid"></div><div class="symbol" aria-hidden="true">${p.symbol}</div><div class="headline">${escapeHTML(p.headline).replace('\n','<br>')}</div><span class="caption">${escapeHTML(p.status)}</span></button><div class="meta">${String(i+1).padStart(2,'0')} / ${escapeHTML(p.category)}</div><button class="project-title" data-project="${p.id}">${escapeHTML(p.title)} <span>↗</span></button><p>${escapeHTML(p.description)}</p><div class="tags">${p.tags.map(t=>`<span>${escapeHTML(t)}</span>`).join('')}</div>`;
+ card.innerHTML=`<div class="card-heading"><span class="meta">${escapeHTML(p.category)}</span><span class="project-number">${String(i+1).padStart(2,'0')}</span></div><h3><button class="project-title" data-project="${p.id}">${escapeHTML(p.title)}</button></h3><p>${escapeHTML(p.description)}</p><div class="tags">${p.tags.map(t=>`<span>${escapeHTML(t)}</span>`).join('')}</div><div class="card-footer"><span class="project-stage">${escapeHTML(p.status)}</span><button class="detail-link" data-project="${p.id}" aria-label="View ${escapeHTML(p.title)} details">View project <span aria-hidden="true">→</span></button></div>`;
  grid.append(card);
 });
 const dialog=document.querySelector('dialog');
